@@ -1,0 +1,8 @@
+﻿{
+  "appSettings": {
+    "InitialLoadingTimeOut": "20",
+    "ProfilePage": "/profile",
+    "StartingURL": "https://juice-shop.herokuapp.com/",
+    "WaitingTimeoutInSeconds": "20"
+  }
+}

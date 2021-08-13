@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testsuites time="0.685" tests="1" failures="1">
+  <testsuite id="0" name="ApiTestingFramework.dll" tests="1" failures="1" time="0.685">
+    <testcase classname="ApiTestingFramework.Features.ApiFeatures.TestTwitterTweetsFeature" name="_01GetRecentTweetsFromOurHomeTimeline" time="0.6852630">
+      <error message="  Expected: True&#xD;&#xA;  But was:  False&#xD;&#xA;">   at ApiTestingFramework.Steps.ApiSteps.TestTwitterTweetsSteps.ThenTheLatestTweetIsMyMessageOf(String tweet) in D:\work\Personal\GIT\Cristian-Popescu\ApiTestingFramework\Steps\ApiSteps\BaseApiScenarioSteps.cs:line 26
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors()
+   at ApiTestingFramework.Features.ApiFeatures.TestTwitterTweetsFeature.ScenarioCleanup()
+   at ApiTestingFramework.Features.ApiFeatures.TestTwitterTweetsFeature._01GetRecentTweetsFromOurHomeTimeline() in D:\work\Personal\GIT\Cristian-Popescu\ApiTestingFramework\Features\ApiFeatures\BaseApiScenario.feature:line 7
+</error>
+    </testcase>
+  </testsuite>
+</testsuites>

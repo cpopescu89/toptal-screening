@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testsuites time="39.241" tests="5" failures="0">
+  <testsuite id="0" name="AutomationFramework.dll" tests="5" failures="0" time="39.241">
+    <testcase classname="AutomationFramework.Tests.Features.RegisterFeature" name="ChangeUsername" time="5.8801800" />
+    <testcase classname="AutomationFramework.Tests.Features.RegisterFeature" name="LinkImage" time="5.4883540" />
+    <testcase classname="AutomationFramework.Tests.Features.RegisterFeature" name="Register(&quot;0&quot;,null)" time="9.2550210" />
+    <testcase classname="AutomationFramework.Tests.Features.RegisterFeature" name="Register(&quot;1&quot;,null)" time="9.3301210" />
+    <testcase classname="AutomationFramework.Tests.Features.RegisterFeature" name="Register(&quot;2&quot;,null)" time="9.2874660" />
+  </testsuite>
+</testsuites>
