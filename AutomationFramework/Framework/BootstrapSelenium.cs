@@ -43,6 +43,9 @@ namespace AutomationFramework.Framework
             options.AddArguments("--start-maximized");
             options.SetLoggingPreference("performance", LogLevel.Info);
             options.AddArgument("--incognito");
+            options.AddArgument("--headless");
+            options.AddArgument("--no-sandbox");
+            options.AddArgument("--disable-dev-shm-usage");
             var driver = new ChromeDriver(options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
             return driver;
