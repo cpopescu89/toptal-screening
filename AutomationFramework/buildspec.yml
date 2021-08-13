@@ -1,0 +1,11 @@
+version: 0.2
+
+phases:
+
+  build:
+    commands:
+      - echo 'Build started on' $(Get-Date)
+      - dotnet build -c Release AutomationFramework\
+      - aws s3 cp s3://umpg-songs-automated-tests-files/chromium Source/UMPG.Songs.AutomatedTests/UMPG.Songs.AutomatedTestsLambda/chromium
+      - dotnet test AutomationFramework\bin\Release\netcoreapp3.1\AutomationFramework.dll 
+      - echo 'Test Run finished finished on' $(Get-Date)
