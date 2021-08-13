@@ -6,10 +6,8 @@ phases:
             dotnet: 3.1
     build:
         commands:
-          - echo 'Build started on' $(Get-Date)
           - dotnet build -c Release AutomationFramework
           - dotnet test AutomationFramework/bin/Release/netcoreapp3.1/AutomationFramework.dll --logger trx --results-directory ./testresults
-          - echo 'Test Run finished finished on' $(Get-Date)
 reports:
     DotnetTestExamples:
         file-format: VisualStudioTrx

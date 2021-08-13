@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using BoDi;
@@ -47,6 +48,7 @@ namespace AutomationFramework.Framework
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
             var driver = new ChromeDriver(options);
+            driver.Manage().Window.Size = new Size(1920, 1080);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
             return driver;
         }
