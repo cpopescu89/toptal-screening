@@ -15,11 +15,11 @@ namespace ApiTestingFramework.Apis
 
         private static HttpClient _client;
         public static HttpResponseMessage Response;
-        public static void SetAuthentication()
+        public static void SetAuthentication(string token)
         {
             _client = new HttpClient();
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token",
-                Settings.AccessToken);
+                token);
         }
 
 
@@ -46,5 +46,10 @@ namespace ApiTestingFramework.Apis
         }
 
 
+        public static async Task CallEndpointInvalidToken()
+        {
+            SetAuthentication("some/random/token/that/shouldn't/exist");
+            await CallEndpoint("equipment");
+        }
     }
 }

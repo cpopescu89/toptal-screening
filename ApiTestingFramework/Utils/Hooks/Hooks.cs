@@ -10,16 +10,8 @@ namespace ApiTestingFramework.Utils.Hooks
         internal static void BeforeFeatureHooks()
         {
             {
-                BaseApiTests.SetAuthentication();
+                BaseApiTests.SetAuthentication(Settings.Settings.AccessToken);
             }
         }
-
-        //[BeforeScenario]
-        //internal static void BeforeScenarioHooks()
-        //{
-        //    {
-        //        BaseApiTests.SetBaseUriAndAuth();
-        //    }
-        //}
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using ApiTestingFramework.Apis;
 using ApiTestingFramework.Apis.Models;
@@ -36,6 +35,12 @@ namespace ApiTestingFramework.Steps.ApiSteps
         {
             Assert.True(_equipment.Result.results.Any(x => x.name.Equals(item)));
         }
-        
+
+        [Given(@"I call an endpoint using using an invalid token")]
+        public async Task GivenICallAnEndpointUsingUsingAnInvalidToken()
+        {
+            await BaseApiTests.CallEndpointInvalidToken();
+        }
+
     }
 }
