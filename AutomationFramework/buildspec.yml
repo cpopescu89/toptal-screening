@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+    install:
+        runtime-versions:
+            dotnet: 3.1
+    build:
+        commands:
+          - dotnet build -c Release AutomationFramework
+          - dotnet test AutomationFramework/bin/Release/netcoreapp3.1/AutomationFramework.dll --logger trx --results-directory ./testresults -l:html
+reports:
+    DotnetTestExamples:
+        file-format: VisualStudioTrx
+        files:
+            - '**/*'
+        base-directory: './testresults'
+
+artifacts:
+    files: 
+        - '**/*.html'
+    base-directory: './testresults'
