@@ -3,6 +3,8 @@ using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading;
 using AutomationFramework.Framework.Extensions;
 
 namespace AutomationFramework.PageObjects
@@ -13,6 +15,8 @@ namespace AutomationFramework.PageObjects
         public HomePage(IWebDriver driver) : base(driver)
         {
         }
+
+        private int ReviewsNumber { get; set; }
 
         private IWebElement AccountButton => Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("navbarAccount")));
         private IWebElement LoginButton => Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("navbarLoginButton")));
@@ -26,12 +30,21 @@ namespace AutomationFramework.PageObjects
         private IWebElement AcceptCookiesButton =>
             Wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".cc-dismiss")));
 
-        private IReadOnlyCollection<IWebElement> AllProducts =>
-            Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("mat-grid-tile")));
+        private IWebElement ReviewTextField =>
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("mat-form-field textarea")));
 
-        private IReadOnlyCollection<IWebElement> AvailableProducts => Wait.Until(
+        private IWebElement SubmitReviewButton =>
+            Wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("mat-dialog-actions #submitButton")));
+
+        private IWebElement ExpandReviewsButton =>
+            Wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("mat-expansion-panel-header")));
+        private IEnumerable<IWebElement> Comments =>
+            Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector(".comment")));
+
+        private IEnumerable<IWebElement> AvailableProducts => Wait.Until(
             ExpectedConditions.PresenceOfAllElementsLocatedBy(
                 By.XPath("//mat-card/div[1][not(contains(@class, 'ribbon-sold'))]//..//..//mat-card")));
+
 
         public void ClickAccountButton() => AccountButton.Click();
         public LoginPage ClickLoginButton()
@@ -48,13 +61,6 @@ namespace AutomationFramework.PageObjects
             AcceptCookiesButton.Click();
         }
 
-        public void LogInExistingUser()
-        {
-            ClickAccountButton();
-            var loginPage = ClickLoginButton();
-            loginPage.LoginWithCredentials(AppSettings.GetUsername(), AppSettings.GetPassword());
-        }
-
         public List<string> AddAvailableProductsToBasket(int numberOfProducts)
         {
             var productList = new List<string>();
@@ -66,7 +72,6 @@ namespace AutomationFramework.PageObjects
                 product.FindElement(By.CssSelector(".btn-basket")).Click();
                 productList.Add(itemName);
                 Notification.FindElement(By.TagName("button")).Click();
-
             }
 
             return productList;
@@ -76,6 +81,43 @@ namespace AutomationFramework.PageObjects
         {
             BasketButton.Click();
             return new BasketPage(Driver);
+        }
+
+        public void OpenRandomProduct()
+        {
+            var product = AvailableProducts.PickRandom();
+            product.FindElement(By.XPath(".//img")).Click();
+        }
+
+        public void AddReviewOfLength(string review)
+        {
+            ReviewTextField.Click();
+            ReviewTextField.SendKeys(review);
+            ReviewsNumber = GetReviewsNumber();
+            SubmitReviewButton.Click();
+        }
+
+        private int GetReviewsNumber()
+        {
+
+            var text = ExpandReviewsButton.Text;
+            var resultString = int.Parse(Regex.Match(text, @"\d+").Value);
+            return resultString;
+        }
+
+        public bool ProductHasReview(string review)
+        {
+            //wait until review gets published. If it doesn't get published in 10 seconds, fail test
+            var count = 0;
+            while (GetReviewsNumber() <= ReviewsNumber)
+            {
+                Thread.Sleep(1000);
+                count++;
+                if (count == 10) return false;
+            }
+
+            ExpandReviewsButton.Click();
+            return Wait.Until(ExpectedConditions.TextToBePresentInElement(Comments.Last(), review));
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using AutomationFramework.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
-using System;
 
 namespace AutomationFramework.PageObjects
 {
@@ -16,8 +15,6 @@ namespace AutomationFramework.PageObjects
         private IWebElement LoginButton => Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("loginButton")));
         private IWebElement RegisterButton => Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("newCustomerLink")));
 
-        public void FillEmailField(string content) => EmailField.SendKeys(content);
-        public void FillPasswordField(string content) => PasswordField.SendKeys(content);
         public void ClickLoginButton() => LoginButton.Click();
         public RegisterPage ClickRegisterButton()
         {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 
@@ -32,8 +31,6 @@ namespace AutomationFramework.Framework
         }
 
         public static string GetHomepage() => GetSettingValue("StartingURL");
-        public static string GetUsername() => GetSettingValue("Username");
-        public static string GetPassword() => GetSettingValue("Password");
 
         public static string GetProfilePage() =>
             GetPageUrl("ProfilePage");

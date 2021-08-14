@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AutomationFramework.Framework;
 using OpenQA.Selenium;
@@ -13,7 +12,8 @@ namespace AutomationFramework.PageObjects
         {
         }
 
-        private IWebElement CheckoutButton => Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("checkoutButton")));
+        private IWebElement CheckoutButton => 
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("checkoutButton")));
         private IEnumerable<IWebElement> BasketContents =>
             Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("mat-row")));
 

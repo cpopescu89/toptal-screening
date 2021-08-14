@@ -18,7 +18,7 @@ namespace AutomationFramework.PageObjects
         private IWebElement SecurityQuestionDropdown => Wait.Until(ExpectedConditions.ElementIsVisible(By.TagName("mat-select")));
         private IWebElement AnswerField => Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("securityAnswerControl")));
 
-        private IReadOnlyCollection<IWebElement> DropdownOptions =>
+        private IEnumerable<IWebElement> DropdownOptions =>
             Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("mat-option")));
 
         private IWebElement RegisterButton => Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("registerButton")));

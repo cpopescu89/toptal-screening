@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using BoDi;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -38,15 +37,18 @@ namespace AutomationFramework.Framework
 
         private static IWebDriver CreateChromeDriver()
         {
+
             var options = new ChromeOptions();
             options.AddArguments("--start-maximized");
             options.SetLoggingPreference("performance", LogLevel.Info);
+#if RELEASE
             options.AddArgument("--incognito");
             options.AddArgument("--headless");
             options.AddArgument("--no-sandbox");
+            options.AddArgument("--window-size=1920,1080");
             options.AddArgument("--disable-dev-shm-usage");
+#endif
             var driver = new ChromeDriver(options);
-            driver.Manage().Window.Size = new Size(1920, 1080);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
             return driver;
         }

@@ -16,12 +16,27 @@ namespace AutomationFramework.PageObjects
         private IWebElement AddNewCardButton =>
             Wait.Until(ExpectedConditions.ElementIsVisible(
                 By.CssSelector("div:nth-child(1) > div > mat-expansion-panel")));
-        private IWebElement NameField => Wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".mat-expanded mat-form-field:nth-child(1) input")));
-        private IWebElement CardNumberField => Wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".mat-expanded mat-form-field:nth-child(2) input")));
-        private IWebElement CardExpiryMonthField => Wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".mat-expanded mat-form-field:nth-child(3) select")));
-        private IWebElement CardExpiryYearField => Wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".mat-expanded mat-form-field:nth-child(4) select")));
-        private IWebElement SubmitCardButton => Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("submitButton")));
-        private IWebElement ContinueButton => Wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".nextButton")));
+
+        private IWebElement NameField =>
+            Wait.Until(ExpectedConditions.ElementIsVisible(
+                By.CssSelector(".mat-expanded mat-form-field:nth-child(1) input")));
+
+        private IWebElement CardNumberField =>
+            Wait.Until(ExpectedConditions.ElementIsVisible(
+                By.CssSelector(".mat-expanded mat-form-field:nth-child(2) input")));
+
+        private IWebElement CardExpiryMonthField => Wait.Until(
+            ExpectedConditions.ElementIsVisible(By.CssSelector(".mat-expanded mat-form-field:nth-child(3) select")));
+
+        private IWebElement CardExpiryYearField =>
+            Wait.Until(ExpectedConditions.ElementIsVisible(
+                By.CssSelector(".mat-expanded mat-form-field:nth-child(4) select")));
+
+        private IWebElement SubmitCardButton => 
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("submitButton")));
+
+        private IWebElement ContinueButton =>
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".nextButton")));
 
         private IEnumerable<IWebElement> AvailableCards =>
             Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("mat-row")));

@@ -7,8 +7,8 @@ using TechTalk.SpecFlow;
 
 namespace AutomationFramework.Tests.Steps
 {
-    [Binding, Scope(Feature = "Register")]
-    public class RegisterSteps
+    [Binding, Scope(Feature = "JuiceShop")]
+    public class JuiceShopSteps
     {
         private readonly Navigator _navigator;
         private HomePage _homePage;
@@ -24,7 +24,8 @@ namespace AutomationFramework.Tests.Steps
         private readonly string _password = $"{Guid.NewGuid()}"[..20];
         private List<string> _productsList = new List<string>();
         private string _username;
-        public RegisterSteps(Navigator navigator)
+        private string _review;
+        public JuiceShopSteps(Navigator navigator)
         {
             _navigator = navigator;
         }
@@ -48,7 +49,7 @@ namespace AutomationFramework.Tests.Steps
             Assert.True(_homePage.HasBasket());
         }
 
-        [When(@"I add (.*) products ot the basket")]
+        [When(@"I add (.*) products to the basket")]
         public void WhenIAddProductsOtTheBasket(int numberOfProducts)
         {
             _productsList = _homePage.AddAvailableProductsToBasket(numberOfProducts);
@@ -98,6 +99,26 @@ namespace AutomationFramework.Tests.Steps
         public void ThenICanLinkAnImage(string imageLink)
         {
             _profilePage.LinkImage(imageLink);
+        }
+
+
+        [When(@"I click a product")]
+        public void WhenIClickAProduct()
+        {
+            _homePage.OpenRandomProduct();
+        }
+
+        [Then(@"I can leave a review of (.*) characters")]
+        public void ThenICanLeaveAReviewOfCharacters(int length)
+        {
+            _review = new string('a', length);
+            _homePage.AddReviewOfLength(_review);
+        }
+
+        [Then(@"my review is published")]
+        public void ThenMyReviewIsPublished()
+        {
+            Assert.True(_homePage.ProductHasReview(_review));
         }
 
 

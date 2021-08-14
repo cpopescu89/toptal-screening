@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Mime;
-using System.Text;
-using AutomationFramework.Framework;
+﻿using AutomationFramework.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 
@@ -20,8 +16,6 @@ namespace AutomationFramework.PageObjects
         private IWebElement LinkImageButton => Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("submitUrl")));
         private IWebElement UsernameLabel => Wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".mdl-cell > p")));
 
-
-        public void SetUsername() => SetUsernameButton.Click();
         public void LinkImage(string imageLink)
         {
             ImageUrlField.SendKeys(imageLink);
