@@ -19,4 +19,3 @@ artifacts:
     files: 
         - '**/*.html'
     base-directory: './testresults'
-    name: TestResults.html

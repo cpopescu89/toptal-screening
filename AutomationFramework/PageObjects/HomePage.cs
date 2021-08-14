@@ -69,9 +69,9 @@ namespace AutomationFramework.PageObjects
                 var product = AvailableProducts.PickRandom();
                 var itemName = product.FindElement(By.ClassName("item-name")).Text;
                 if (productList.Contains(itemName)) continue;
+                Driver.ScrollToElement(product);
                 product.FindElement(By.CssSelector(".btn-basket")).Click();
                 productList.Add(itemName);
-                Notification.FindElement(By.TagName("button")).Click();
             }
 
             return productList;
