@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Web;
 using BoDi;
 using NUnit.Framework;
 using OpenQA.Selenium;
