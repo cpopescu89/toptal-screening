@@ -14,3 +14,9 @@ reports:
         files:
             - '**/*'
         base-directory: './testresults'
+
+artifacts:
+    files: 
+        - '**/*.html'
+    base-directory: './testresults'
+    name: TestResults.html
