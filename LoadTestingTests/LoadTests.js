@@ -7,7 +7,7 @@ export let options = {
     scenarios: {
         calls: {
             executor: 'per-vu-iterations',
-            vus: 1000,
+    vus: 1000,
             iterations: '1',
             maxDuration: '15s',
         }
