@@ -6,6 +6,7 @@ Feature: Get Requests
     When I retrieve the results
     Then I get 10 result
     And the "Bench" is one of them
+    And I get a "200" response
 
 Scenario: Get non existing endpoint
     Given I call the "invalid" endpoint
