@@ -107,15 +107,7 @@ namespace AutomationFramework.PageObjects
 
         public bool ProductHasReview(string review)
         {
-            //wait until review gets published. If it doesn't get published in 10 seconds, fail test
-            var count = 0;
-            while (GetReviewsNumber() <= ReviewsNumber)
-            {
-                Thread.Sleep(1000);
-                count++;
-                if (count == 10) return false;
-            }
-
+            Wait.Until(ExpectedConditions.TextToBePresentInElement(ExpandReviewsButton, (ReviewsNumber + 1).ToString()));
             ExpandReviewsButton.Click();
             return Wait.Until(ExpectedConditions.TextToBePresentInElement(Comments.Last(), review));
         }

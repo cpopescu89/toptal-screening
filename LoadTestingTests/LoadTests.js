@@ -1,10 +1,18 @@
 import http from 'k6/http';
-import {sleep} from 'k6';
 export let options = {
     insecureSkipTLSVerify: true,
-    noConnectionReuse: false,
-    vus: 1000,
-    duration: '15s'
+    thresholds: {
+        http_req_duration: ['p(90)<600']
+    },
+    scenarios: {
+        calls: {
+            executor: 'per-vu-iterations',
+            vus: 1000,
+            iterations: '1',
+            maxDuration: '15s',
+        }
+    }
+
 };
 
 export default () => {
